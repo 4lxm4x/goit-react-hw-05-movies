@@ -1,5 +1,5 @@
 import './cast.css';
-import './placeholder.png';
+import placeholder from './placeholder.png';
 
 export default function CastProfile(actor) {
   const { profile_path, name, character } = actor.info;
@@ -14,7 +14,7 @@ export default function CastProfile(actor) {
               alt={`${name}`}
             />
           ) : (
-            <img src="https://placehold.co/154x231" alt="no_name" />
+            <img src={placeholder} alt="no_name" />
           )}
         </li>
         <li>{name}</li>
