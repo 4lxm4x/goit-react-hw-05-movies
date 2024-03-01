@@ -1,35 +1,40 @@
 import { useParams, Link, Outlet } from 'react-router-dom';
-import { getMovieDetails } from 'service/api';
-import { useEffect, useState } from 'react';
+import { api } from 'service/api';
+import { useEffect, useState, useRef } from 'react';
 
 export default function MovieDetails() {
   const { movieId } = useParams();
+  let firstLoad = useRef(true);
 
   const [movieInfo, setMovieInfo] = useState();
 
   useEffect(() => {
-    async function fetchMovieDetails(movieId) {
-      await getMovieDetails(movieId).then(response => {
-        console.log(response);
-        const {
-          title,
-          genres,
-          release_date,
-          overview,
-          popularity,
-          poster_path,
-        } = response.data;
-        setMovieInfo({
-          title,
-          genres,
-          release_date,
-          overview,
-          popularity,
-          poster_path,
+    if (firstLoad.current) {
+      async function fetchMovieDetails(movieId) {
+        const query = `movie/${movieId}`;
+
+        await api(query).then(response => {
+          const {
+            title,
+            genres,
+            release_date,
+            overview,
+            popularity,
+            poster_path,
+          } = response.data;
+          setMovieInfo({
+            title,
+            genres,
+            release_date,
+            overview,
+            popularity,
+            poster_path,
+          });
         });
-      });
+      }
+      fetchMovieDetails(movieId);
+      firstLoad.current = false;
     }
-    fetchMovieDetails(movieId);
   }, [movieId]);
 
   if (!movieInfo) return;

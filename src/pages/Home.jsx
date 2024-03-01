@@ -1,22 +1,22 @@
-import { Outlet, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { getMoviesList } from 'service/api';
+import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { api } from 'service/api';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
+  let firstLoad = useRef(true);
 
   useEffect(() => {
-    async function fetchMoviesList() {
-      await getMoviesList().then(response => {
-        console.log(response.data.results);
-        setMovies(response.data.results);
-        // console.log(movies);
-      });
+    if (firstLoad.current) {
+      async function fetchMoviesList() {
+        const query = `trending/all/day?language=en-US`;
+        const { data } = await api(query);
+        setMovies(data.results);
+      }
 
-      // setMovies(moviesList);
+      fetchMoviesList();
     }
-    // console.log(movies);
-    fetchMoviesList();
+    firstLoad.current = false;
   }, []);
   return (
     <div>

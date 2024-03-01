@@ -1,21 +1,38 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieCast } from 'service/api';
+import { api } from 'service/api';
+import CastProfile from './CastProfile';
+import './cast.css';
 
 export default function Cast() {
   const { movieId } = useParams();
+  const [cast, setCast] = useState([]);
+  let firstLoad = useRef(true);
 
   useEffect(() => {
-    async function fetchMovieCast(movieId) {
-      await getMovieCast(movieId).then(response => {
-        const { cast } = response.data;
-        cast.map(actor => {
-          const { profile_path, name, character } = actor;
-        });
-      });
+    if (firstLoad.current) {
+      async function fetchMovieCredits(movieId) {
+        const query = `movie/${movieId}/credits`;
+        const credits = await api(query);
+        setCast(credits.data.cast);
+      }
+
+      fetchMovieCredits(movieId);
+      firstLoad.current = false;
     }
-    fetchMovieCast(movieId);
   }, [movieId]);
 
-  return <div>{}</div>;
+  return (
+    <div>
+      <ul>
+        {cast.map(actor => {
+          return (
+            <li key={actor.id}>
+              <CastProfile info={actor} />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const options = {
+  baseURL: 'https://api.themoviedb.org/3/',
   method: 'GET',
   headers: {
     accept: 'application/json',
@@ -9,34 +10,26 @@ const options = {
   },
 };
 
-export function getMoviesList() {
-  const data = axios.get(
-    'https://api.themoviedb.org/3/trending/all/day?language=en-US',
-    options
-  );
-  //   console.log('from api', data);
+// export function getMoviesList() {
+//   const data = axios.get('trending/all/day?language=en-US', options);
 
-  return data;
-}
+//   return data;
+// }
 
-export function getMovieDetails(movieId) {
-  const data = axios.get(
-    `https://api.themoviedb.org/3/movie/${movieId}`,
-    options
-  );
+// export function getMovieDetails(movieId) {
+//   const data = axios.get(`movie/${movieId}`, options);
 
-  //   console.log('from api', data);
+//   return data;
+// }
 
-  return data;
-}
+// export function getMovieCredits(movieId) {
+//   const credits = axios.get(`movie/${movieId}/credits`, options);
 
-export function getMovieCast(movieId) {
-  const data = axios.get(
-    `https://api.themoviedb.org/3/movie/${movieId}/credits`,
-    options
-  );
+//   return credits;
+// }
 
-  //   console.log('from api', data);
+export function api(query) {
+  const credits = axios.get(`${query}`, options);
 
-  return data;
+  return credits;
 }
