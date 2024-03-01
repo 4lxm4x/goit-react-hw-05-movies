@@ -1,4 +1,6 @@
 import { Outlet, NavLink } from 'react-router-dom';
+import './layout.css';
+
 export default function Layout() {
   return (
     <div>

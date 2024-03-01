@@ -1,10 +1,10 @@
-import { Routes, NavLink, Route } from 'react-router-dom';
-import Layout from './Layout';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './Layout/Layout';
 import Home from 'pages/Home';
 import Movies from 'pages/Movies';
 import MovieDetails from 'pages/MovieDetails';
-import Cast from './Cast';
-import Reviews from './Reviews';
+import Cast from './Cast/Cast';
+import Reviews from './Reviews/Reviews';
 
 export default function App() {
   return (
