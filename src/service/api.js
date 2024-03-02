@@ -29,6 +29,7 @@ const options = {
 // }
 
 export function api(query) {
+  // console.log('🚀 ~ api ~ query:', query);
   const credits = axios.get(`${query}`, options);
 
   return credits;

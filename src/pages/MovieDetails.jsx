@@ -1,4 +1,10 @@
-import { useParams, Link, NavLink, Outlet } from 'react-router-dom';
+import {
+  useParams,
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+} from 'react-router-dom';
 import { api } from 'service/api';
 import { useEffect, useState, useRef } from 'react';
 import './movieDetails.css';
@@ -6,8 +12,12 @@ import './movieDetails.css';
 export default function MovieDetails() {
   const { movieId } = useParams();
   let firstLoad = useRef(true);
+  const location = useLocation();
 
   const [movieInfo, setMovieInfo] = useState();
+  const backLink = useRef(
+    location.state ? `/movies${location.state}` : `/movies`
+  );
 
   useEffect(() => {
     if (firstLoad.current) {
@@ -44,7 +54,8 @@ export default function MovieDetails() {
       movieInfo;
     return (
       <div className="movie">
-        <Link to="/movies">Go Back</Link> <br></br>
+        {<Link to={backLink.current}>Go Back</Link>}
+        <br></br>
         <img
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
           alt={title}

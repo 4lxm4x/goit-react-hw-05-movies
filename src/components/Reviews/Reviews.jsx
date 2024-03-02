@@ -13,7 +13,6 @@ export default function Reviews() {
       async function fetchMovieReviews(movieId) {
         const query = `movie/${movieId}/reviews`;
         const { data } = await api(query);
-        console.log(data.results);
 
         setReviews(data.results);
       }
