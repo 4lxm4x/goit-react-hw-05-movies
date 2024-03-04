@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import { api } from 'service/api';
+import api from 'service/api';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
+  // const [params, setParams] = useParams('');
   let firstLoad = useRef(true);
 
   useEffect(() => {

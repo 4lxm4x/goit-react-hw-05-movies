@@ -5,7 +5,7 @@ import {
   Outlet,
   useLocation,
 } from 'react-router-dom';
-import { api } from 'service/api';
+import api from 'service/api';
 import { useEffect, useState, useRef } from 'react';
 import './movieDetails.css';
 

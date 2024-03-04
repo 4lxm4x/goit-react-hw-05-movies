@@ -10,26 +10,7 @@ const options = {
   },
 };
 
-// export function getMoviesList() {
-//   const data = axios.get('trending/all/day?language=en-US', options);
-
-//   return data;
-// }
-
-// export function getMovieDetails(movieId) {
-//   const data = axios.get(`movie/${movieId}`, options);
-
-//   return data;
-// }
-
-// export function getMovieCredits(movieId) {
-//   const credits = axios.get(`movie/${movieId}/credits`, options);
-
-//   return credits;
-// }
-
-export function api(query) {
-  // console.log('🚀 ~ api ~ query:', query);
+export default function api(query) {
   const credits = axios.get(`${query}`, options);
 
   return credits;

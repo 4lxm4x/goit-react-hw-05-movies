@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { api } from 'service/api';
+import api from 'service/api';
 import CastProfile from './CastProfile';
 import './cast.css';
 
