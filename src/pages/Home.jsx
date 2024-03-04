@@ -1,10 +1,9 @@
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import api from 'service/api';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
-  // const [params, setParams] = useParams('');
   let firstLoad = useRef(true);
   const location = useLocation();
 
