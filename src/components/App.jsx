@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import Home from 'pages/Home';
 import Movies from 'pages/Movies';
@@ -7,6 +7,9 @@ import Cast from './Cast/Cast';
 import Reviews from './Reviews/Reviews';
 
 export default function App() {
+  const location = useLocation();
+  console.log('🚀 ~ App ~ location :', location);
+
   return (
     <div>
       <Routes>
