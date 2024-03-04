@@ -13,11 +13,10 @@ export default function MovieDetails() {
   const { movieId } = useParams();
   let firstLoad = useRef(true);
   const location = useLocation();
+  console.log('🚀 ~ MovieDetails ~ location:', location);
 
   const [movieInfo, setMovieInfo] = useState();
-  const backLink = useRef(
-    location.state ? `/movies${location.state}` : `/movies`
-  );
+  const backLink = useRef(location.state ? `${location.state}` : `/movies`);
 
   useEffect(() => {
     if (firstLoad.current) {

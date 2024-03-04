@@ -8,7 +8,8 @@ import Reviews from './Reviews/Reviews';
 
 export default function App() {
   const location = useLocation();
-  console.log('🚀 ~ App ~ location :', location);
+  // console.log('🚀 ~ App ~ location :', location);
+  console.log(location.pathname);
 
   return (
     <div>
@@ -16,7 +17,10 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/movies" element={<Movies />} />
-          <Route path="/movies/:movieId" element={<MovieDetails />}>
+          <Route
+            path="/movies/:movieId"
+            element={<MovieDetails state={location.pathname} />}
+          >
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>

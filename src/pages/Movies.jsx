@@ -8,6 +8,7 @@ export default function Movies() {
   const searchQuery = searchParams.get('query');
   const [movieQuery, setMovieQuery] = useState(searchQuery);
   const location = useLocation();
+  console.log('🚀 ~ Movies ~ location:', location);
   const load = useRef(true);
 
   useEffect(() => {
@@ -48,7 +49,10 @@ export default function Movies() {
         {movies.map(movie => {
           return (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`} state={location.search}>
+              <Link
+                to={`/movies/${movie.id}`}
+                state={`${location.pathname}${location.search}`}
+              >
                 {movie.name || movie.title}
               </Link>
             </li>
