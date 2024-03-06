@@ -1,14 +1,18 @@
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, Link } from 'react-router-dom';
 import './layout.css';
 import { BiCameraMovie, BiMoviePlay, BiHomeAlt2 } from 'react-icons/bi';
 
 export default function Layout() {
   return (
     <div>
-      <h1>
-        Кінопошук
-        <BiCameraMovie />
-      </h1>
+      <Link to="/">
+        {' '}
+        <h1>
+          Кінопошук
+          <BiCameraMovie />
+        </h1>
+      </Link>
+
       <nav>
         <NavLink to="/">
           <BiHomeAlt2 />
