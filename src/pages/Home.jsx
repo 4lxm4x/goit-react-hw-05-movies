@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import api from 'service/api';
+import './Home.css';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -9,23 +10,27 @@ export default function Home() {
 
   useEffect(() => {
     if (firstLoad.current) {
-      async function fetchMoviesList() {
+      async function getMoviesList() {
         const query = `trending/all/day?language=en-US`;
         const { data } = await api(query);
         setMovies(data.results);
       }
-
-      fetchMoviesList();
+      getMoviesList();
     }
+
     firstLoad.current = false;
   }, []);
   return (
     <div>
-      <h1>Home</h1>
+      <h1>В тренді</h1>
       <ul>
         {movies.map(movie => {
           return (
-            <li key={movie.id}>
+            <li className="movieLink" key={movie.id}>
+              <img
+                src={`https://image.tmdb.org/t/p/w45${movie.poster_path}`}
+                alt={movie.title}
+              />
               <Link to={`/movies/${movie.id}`} state={location.pathname}>
                 {movie.name || movie.title}
               </Link>

@@ -1,0 +1,15 @@
+form {
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+.movieLink {
+  padding-top: 20px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+}
+
+.noResults {
+  margin-left: 10px;
+}

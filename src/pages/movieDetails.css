@@ -1,5 +1,26 @@
 a {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
   &.active {
     color: red;
   }
+}
+
+.backButton {
+  font-size: 20px;
+  color: blue;
+  padding-left: 0;
+}
+
+.movie {
+  padding-left: 10px;
+}
+
+ul {
+  padding-left: 10px;
+}
+
+a {
+  text-decoration: underline;
 }

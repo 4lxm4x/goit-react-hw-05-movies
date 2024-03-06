@@ -5,20 +5,18 @@ import ReactLoading from 'react-loading';
 // import Home from 'pages/Home';
 // import Movies from 'pages/Movies';
 // import MovieDetails from 'pages/MovieDetails';
-// import Cast from './Cast/Cast';
-// import Reviews from './Reviews/Reviews';
+import Cast from './Cast/Cast'; //если делать через лейзи импорт выходит некрасиво, оно ререндерит заново всю страницу и скроллит вверх
+import Reviews from './Reviews/Reviews';
 
+const Layout = lazy(() => import('./Layout/Layout'));
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
 const MovieDetails = lazy(() => import('pages/MovieDetails'));
-const Cast = lazy(() => import('./Cast/Cast'));
-const Reviews = lazy(() => import('./Reviews/Reviews'));
-const Layout = lazy(() => import('./Layout/Layout'));
+// const Cast = lazy(() => import('./Cast/Cast'));
+// const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export default function App() {
   const location = useLocation();
-  // console.log('🚀 ~ App ~ location :', location);
-  console.log(location.pathname);
 
   return (
     <Suspense

@@ -8,41 +8,45 @@ import {
 import api from 'service/api';
 import { useEffect, useState, useRef } from 'react';
 import './movieDetails.css';
+import {
+  IoCaretBackCircleOutline,
+  IoPeopleOutline,
+  IoNewspaperOutline,
+} from 'react-icons/io5';
 
 export default function MovieDetails() {
   const { movieId } = useParams();
   let firstLoad = useRef(true);
   const location = useLocation();
-  console.log('🚀 ~ MovieDetails ~ location:', location);
 
   const [movieInfo, setMovieInfo] = useState();
+
   const backLink = useRef(location.state ? `${location.state}` : `/movies`);
 
   useEffect(() => {
     if (firstLoad.current) {
-      async function fetchMovieDetails(movieId) {
+      async function getMovieDetails(movieId) {
         const query = `movie/${movieId}`;
 
-        await api(query).then(response => {
-          const {
-            title,
-            genres,
-            release_date,
-            overview,
-            popularity,
-            poster_path,
-          } = response.data;
-          setMovieInfo({
-            title,
-            genres,
-            release_date,
-            overview,
-            popularity,
-            poster_path,
-          });
+        const { data } = await api(query);
+        const {
+          title,
+          genres,
+          release_date,
+          overview,
+          popularity,
+          poster_path,
+        } = data;
+        setMovieInfo({
+          title,
+          genres,
+          release_date,
+          overview,
+          popularity,
+          poster_path,
         });
       }
-      fetchMovieDetails(movieId);
+      getMovieDetails(movieId);
       firstLoad.current = false;
     }
   }, [movieId]);
@@ -53,7 +57,12 @@ export default function MovieDetails() {
       movieInfo;
     return (
       <div className="movie">
-        {<Link to={backLink.current}>Go Back</Link>}
+        {
+          <Link to={backLink.current} className="backButton">
+            <IoCaretBackCircleOutline />
+            Повернутися до списку фільмів
+          </Link>
+        }
         <br></br>
         <img
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -69,10 +78,15 @@ export default function MovieDetails() {
           <h4>Additional information</h4>
           <ul>
             <li>
-              <NavLink to="cast">Cast</NavLink>
+              <NavLink to="cast">
+                <IoPeopleOutline />В ролях
+              </NavLink>
             </li>
             <li>
-              <NavLink to="reviews">Reviews</NavLink>
+              <NavLink to="reviews">
+                <IoNewspaperOutline />
+                Огляди
+              </NavLink>
             </li>
           </ul>
         </div>

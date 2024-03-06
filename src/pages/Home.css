@@ -1,0 +1,6 @@
+.movieLink {
+  padding-top: 20px;
+  /* border-bottom: 1px solid grey; */
+  display: flex;
+  align-items: center;
+}
