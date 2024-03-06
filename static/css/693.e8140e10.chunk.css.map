@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/693.e8140e10.chunk.css","mappings":"AAAA,WAIE,kBAAmB,CADnB,YAAa,CAFb,gBAIF","sources":["pages/Home.css"],"sourcesContent":[".movieLink {\n  padding-top: 20px;\n  /* border-bottom: 1px solid grey; */\n  display: flex;\n  align-items: center;\n}\n"],"names":[],"sourceRoot":""}
